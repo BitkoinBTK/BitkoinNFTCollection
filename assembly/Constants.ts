@@ -6,10 +6,10 @@ export namespace Constants {
   export const MINT_PRICE: u64 = 0;
   export const MINT_FEE: bool = false;
   export const MAX_SUPPLY: u64 = 10;
-  export const URI: string = "https://bafybeidaonevaiir7t65w5ol26se42ssu3b7qy3hcngxyrivpxurwc6gyy.ipfs.nftstorage.link/";
+  export const URI: string = "https://bafybeiaiw3amn4wgyavmppxhgvlhebdpwgmxluuiwp57rat7v2qzda7ssm.ipfs.nftstorage.link/";
   export const OWNER: Uint8Array = Base58.decode("1JGLmE1BbZCZ6xcM2yHJ5tMBnrEQb3eTJA");
   
-  export const BURN_TO_ADDRESS: Uint8Array = Base58.decode("16QqxFiift3FhBBaNCJiGoZUivx44Seqxe");
+  export const BTK_ADDRESS: Uint8Array = Base58.decode("16QqxFiift3FhBBaNCJiGoZUivx44Seqxe");
   export const STANDARD_BTK_VALUE: u64 = 5000000000000;
   export const LARGE_BTK_VALUE: u64 = 25000000000000;
   export const MAX_LARGE_BTK_SUPPLY: u64 = 3;

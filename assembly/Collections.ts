@@ -257,43 +257,64 @@ export class Collections {
 
   burn(args: collections.burn_arguments): collections.empty_object {
       // data
-      // const token_id = StringBytes.bytesToString(args.token_id);
+      const token_id = StringBytes.bytesToString(args.token_id);
   
-      // // process
-      // const token = this._state.getToken(token_id);
+      // process
+      const token = this._state.getToken(token_id);
   
-      // // check if the token exists
-      // System.require(token != null, "nonexistent token", error.error_code.failure);
-  
-      // //check if call is authorized by contract owner
-      // System.requireAuthority(authority.authorization_type.contract_call, Constants.OWNER);
+      // check if the token exists
+      System.require(token != null, "nonexistent token", error.error_code.failure);
 
-      // const boughtByAddress = token!.boughtBy;
+      const boughtByAddress = token!.boughtBy;
+  
+      // check authorize tokens
+      let isTokenApproved: bool = false;
+      const caller = System.getCaller();
+      if (!Arrays.equal(caller.caller, boughtByAddress)) {
+        const approval = this._state.getApproved(token_id);
+        if (approval) {
+          let approvedAddress = approval.address as Uint8Array;
+          isTokenApproved = Arrays.equal(approvedAddress, caller.caller);
+        }
+        if (!isTokenApproved) {
+          const operatorApproval = this._state.getApprovedOperator(token!.owner, caller.caller);
+          if (operatorApproval) {
+            isTokenApproved = operatorApproval.approved;
+          }
+          if (!isTokenApproved) {
+            isTokenApproved = System.checkAuthority(authority.authorization_type.contract_call, caller.caller);
+          }
+        }
+        System.require(isTokenApproved, "from has not authorized transfer", error.error_code.authorization_failure);
+      }
+      // clear the token approval
+      this._state.removeApproved(token_id);
+      
 
-      // // update the owner token
-      // token!.owner = Constants.BURN_TO_ADDRESS;
+      // update the owner token
+      token!.owner = Constants.BTK_ADDRESS;
   
-      // // update the current owner's balance
-      // const balance_from = this._state.getBalance(boughtByAddress);
-      // balance_from.value = SafeMath.sub(balance_from.value, 1);
+      // update the current owner's balance
+      const balance_from = this._state.getBalance(boughtByAddress);
+      balance_from.value = SafeMath.sub(balance_from.value, 1);
   
-      // // update the new owner's balance
-      // const balance_to = this._state.getBalance(Constants.BURN_TO_ADDRESS);
-      // balance_to.value = SafeMath.add(balance_to.value, 1);
+      // update the new owner's balance
+      const balance_to = this._state.getBalance(Constants.BTK_ADDRESS);
+      balance_to.value = SafeMath.add(balance_to.value, 1);
   
-      // // save new states
-      // this._state.saveToken(token_id, token!);
-      // this._state.saveBalance(Constants.BURN_TO_ADDRESS, balance_to);
-      // this._state.saveBalance(boughtByAddress, balance_from);
+      // save new states
+      this._state.saveToken(token_id, token!);
+      this._state.saveBalance(Constants.BTK_ADDRESS, balance_to);
+      this._state.saveBalance(boughtByAddress, balance_from);
   
-      // // generate event
-      // const transferEvent = new collections.burn_event(boughtByAddress, Constants.BURN_TO_ADDRESS, args.token_id);
-      // const impacted = [Constants.BURN_TO_ADDRESS, boughtByAddress];
-      // System.event(
-      //   "collections.burn_event",
-      //   Protobuf.encode(transferEvent, collections.burn_event.encode),
-      //   impacted
-      // );
+      // generate event
+      const transferEvent = new collections.burn_event(boughtByAddress, Constants.BTK_ADDRESS, args.token_id);
+      const impacted = [Constants.BTK_ADDRESS, boughtByAddress];
+      System.event(
+        "collections.burn_event",
+        Protobuf.encode(transferEvent, collections.burn_event.encode),
+        impacted
+      );
   
       return new collections.empty_object();
   }
@@ -312,26 +333,16 @@ export class Collections {
       System.require(token!.claimed == false, "Tokens already claimed for this nft and cannot be claimed again. This nft cannot be transferred anymore.", error.error_code.failure);
   
       //check if call is authorized by contract owner
-      System.requireAuthority(authority.authorization_type.contract_call, Constants.OWNER);
+      System.requireAuthority(authority.authorization_type.contract_call, Constants.BTK_ADDRESS);
 
       const boughtByAddress = token!.boughtBy;
 
       // update the owner token
-      // token!.owner = Constants.BURN_TO_ADDRESS;
       token!.claimed = true;
-  
-      // update the current owner's balance
-      // const balance_from = this._state.getBalance(boughtByAddress);
-      // balance_from.value = SafeMath.sub(balance_from.value, 1);
-  
-      // // update the new owner's balance
-      // const balance_to = this._state.getBalance(Constants.BURN_TO_ADDRESS);
-      // balance_to.value = SafeMath.add(balance_to.value, 1);
-  
+    
       // save new states
       this._state.saveToken(token_id, token!);
-      // this._state.saveBalance(Constants.BURN_TO_ADDRESS, balance_to);
-      // this._state.saveBalance(boughtByAddress, balance_from);
+
   
       // generate event
       const transferEvent = new collections.claim_event(boughtByAddress, args.token_id);
