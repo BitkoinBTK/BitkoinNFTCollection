@@ -1,0 +1,263 @@
+syntax = "proto3";
+
+package collections;
+
+import "koinos/options.proto";
+
+// objects
+message empty_object {
+}
+
+message string_object {
+   string value = 1;
+}
+
+message uint64_object {
+   uint64 value = 1 [jstype = JS_STRING];
+}
+
+message bool_object {
+   bool value = 1;
+}
+
+message address_object {
+   bytes value = 1 [(koinos.btype) = ADDRESS];
+}
+
+
+message token_object {
+   bytes owner = 1 [(koinos.btype) = ADDRESS];
+   uint64 bitkoin_value = 2 [jstype = JS_STRING];
+   bool bought = 3;
+   bytes boughtBy = 4 [(koinos.btype) = ADDRESS];
+   bool claimed = 5;
+}
+ 
+message balance_object {
+   uint64 value = 1 [jstype = JS_STRING];
+}
+
+message royalty_object {
+   uint64 amount = 1 [jstype = JS_STRING];
+   bytes address = 2 [(koinos.btype) = ADDRESS];
+}
+ 
+message config_object {
+   bytes owner = 1 [(koinos.btype) = ADDRESS];
+   repeated royalty_object royalties = 2;
+}
+
+message token_approval_object {
+   bytes address = 1 [(koinos.btype) = ADDRESS];
+}
+
+message operator_approval_object {
+   bool approved = 1;
+}
+
+// entrypoints
+
+// @description Returns the token's name
+// @read-only true
+// @result string_object
+message name_arguments {
+}
+
+// @description Returns the token's uri
+// @read-only true
+// @result string_object
+message uri_arguments {
+}
+
+// @description Returns the token's symbol
+// @read-only true
+// @result string_object
+message symbol_arguments {
+}
+
+// @description Gets approved address for a token
+// @read-only true
+// @result address_object
+message get_approved_arguments {
+   bytes token_id = 1 [(koinos.btype) = HEX];
+}
+
+// @description Checks if an operator is approved by an owner
+// @read-only true
+// @result bool_object
+message is_approved_for_all_arguments {
+   bytes owner = 1 [(koinos.btype) = ADDRESS];
+   bytes operator = 2 [(koinos.btype) = ADDRESS];
+}
+
+// @description Returns the token's total supply
+// @read-only true
+// @result uint64_object
+message total_supply_arguments {}
+
+// @description Returns collection royalties
+// @read-only true
+message royalties_arguments {
+}
+
+message royalties_result {
+   repeated royalty_object value = 1;
+}
+
+// @description Returns collection royalties
+// @read-only false
+// @result empty_object
+message set_royalties_arguments {
+   repeated royalty_object value = 1;
+}
+
+// @description Returns collection owner
+// @read-only true
+// @result address_object
+message owner_arguments {
+}
+
+// @description Transfer ownership
+// @read-only false
+// @result empty_object
+message transfer_ownership_arguments {
+   bytes owner = 1 [(koinos.btype) = ADDRESS]; 
+}
+
+// @description Gets the balance of an owner
+// @read-only true
+// @result uint64_object
+message balance_of_arguments {
+   bytes owner = 1 [(koinos.btype) = ADDRESS];
+}
+
+// @description Gets the owner of a token
+// @read-only true
+// @result address_object
+message owner_of_arguments {
+   bytes token_id = 1 [(koinos.btype) = HEX];
+}
+
+
+// @description Gets the owner that bought the token token
+// @read-only true
+// @result address_object
+message get_bought_by_arguments {
+   bytes token_id = 1 [(koinos.btype) = HEX];
+}
+
+// @description Gets the bitkoin value corresponding to a token
+// @read-only true
+// @result uint64_object
+message bitkoin_value_of_arguments {
+   bytes token_id = 1 [(koinos.btype) = HEX];
+}
+
+// @description Checks if token has been bought
+// @read-only true
+// @result bool_object
+message is_bought_arguments {
+   bytes token_id = 1 [(koinos.btype) = HEX];
+}
+
+// @description Checks if token has been claimed
+// @read-only true
+// @result bool_object
+message is_claimed_arguments {
+   bytes token_id = 1 [(koinos.btype) = HEX];
+}
+
+
+// @description Mints a new token
+// @read-only false
+// @result empty_object
+message mint_arguments {
+   bytes to = 1 [(koinos.btype) = ADDRESS];
+   uint64 number_tokens_to_mint = 2 [jstype = JS_STRING];
+}
+
+// @description Burns an existing token
+// @read-only false
+// @result empty_object
+message burn_arguments {
+   bytes token_id = 1 [(koinos.btype) = HEX];
+}
+
+// @description Transfers a token
+// @read-only false
+// @result empty_object
+message transfer_arguments {
+   bytes from = 1 [(koinos.btype) = ADDRESS];
+   bytes to = 2 [(koinos.btype) = ADDRESS];
+   bytes token_id = 3 [(koinos.btype) = HEX];
+}
+
+// @description mark token for which the tokens have been claimed
+// @read-only false
+// @result empty_object
+message claim_tokens_arguments {
+   bytes token_id = 1 [(koinos.btype) = HEX];
+}
+
+// @description Approves an address to transfer a token
+// @read-only false
+// @result empty_object
+message approve_arguments {
+   bytes approver_address = 1 [(koinos.btype) = ADDRESS];
+   bytes to = 2 [(koinos.btype) = ADDRESS];
+   bytes token_id = 3 [(koinos.btype) = HEX];
+}
+
+// @description Approves or revokes an address to operate on all tokens owned by caller
+// @read-only false
+// @result empty_object
+message set_approval_for_all_arguments {
+   bytes approver_address = 1 [(koinos.btype) = ADDRESS];
+   bytes operator_address = 2 [(koinos.btype) = ADDRESS];
+   bool approved = 3;
+}
+
+// events
+message mint_event {
+   bytes to = 1 [(koinos.btype) = ADDRESS];
+   bytes token_id = 2 [(koinos.btype) = HEX];
+}
+
+message owner_event {
+   bytes from = 1 [(koinos.btype) = ADDRESS];
+   bytes to = 2 [(koinos.btype) = ADDRESS];
+}
+
+message royalties_event {
+   repeated royalty_object value = 1;
+}
+
+message burn_event {
+   bytes from = 1 [(koinos.btype) = ADDRESS];
+   bytes to = 2 [(koinos.btype) = ADDRESS];
+   bytes token_id = 3 [(koinos.btype) = HEX];
+}
+
+message transfer_event {
+   bytes from = 1 [(koinos.btype) = ADDRESS];
+   bytes to = 2 [(koinos.btype) = ADDRESS];
+   bytes token_id = 3 [(koinos.btype) = HEX];
+}
+
+message claim_event {
+   bytes from = 1 [(koinos.btype) = ADDRESS];
+   // bytes to = 2 [(koinos.btype) = ADDRESS];
+   bytes token_id = 2 [(koinos.btype) = HEX];
+}
+
+message operator_approval_event {
+   bytes approver_address = 1 [(koinos.btype) = ADDRESS];
+   bytes operator_address = 2 [(koinos.btype) = ADDRESS];
+   bool approved = 3;
+}
+
+message token_approval_event {
+   bytes approver_address = 1 [(koinos.btype) = ADDRESS];
+   bytes to = 2 [(koinos.btype) = ADDRESS];
+   bytes token_id = 3 [(koinos.btype) = HEX];
+}

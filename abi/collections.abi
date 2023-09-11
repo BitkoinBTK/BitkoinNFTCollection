@@ -1,0 +1,159 @@
+{
+    "methods": {
+        "name": {
+            "argument": "collections.name_arguments",
+            "return": "collections.string_object",
+            "description": "Returns the token's name",
+            "entry-point": "0x82a3537f",
+            "read-only": true
+        },
+        "uri": {
+            "argument": "collections.uri_arguments",
+            "return": "collections.string_object",
+            "description": "Returns the token's uri",
+            "entry-point": "0x70e5d7b6",
+            "read-only": true
+        },
+        "symbol": {
+            "argument": "collections.symbol_arguments",
+            "return": "collections.string_object",
+            "description": "Returns the token's symbol",
+            "entry-point": "0xb76a7ca1",
+            "read-only": true
+        },
+        "get_approved": {
+            "argument": "collections.get_approved_arguments",
+            "return": "collections.address_object",
+            "description": "Gets approved address for a token",
+            "entry-point": "0x4c731020",
+            "read-only": true
+        },
+        "is_approved_for_all": {
+            "argument": "collections.is_approved_for_all_arguments",
+            "return": "collections.bool_object",
+            "description": "Checks if an operator is approved by an owner",
+            "entry-point": "0xe7ab8ce5",
+            "read-only": true
+        },
+        "total_supply": {
+            "argument": "collections.total_supply_arguments",
+            "return": "collections.uint64_object",
+            "description": "Returns the token's total supply",
+            "entry-point": "0xb0da3934",
+            "read-only": true
+        },
+        "royalties": {
+            "argument": "collections.royalties_arguments",
+            "return": "collections.royalties_result",
+            "description": "Returns collection royalties",
+            "entry-point": "0x36e90cd0",
+            "read-only": true
+        },
+        "set_royalties": {
+            "argument": "collections.set_royalties_arguments",
+            "return": "collections.empty_object",
+            "description": "Returns collection royalties",
+            "entry-point": "0x3b5bb56b",
+            "read-only": false
+        },
+        "owner": {
+            "argument": "collections.owner_arguments",
+            "return": "collections.address_object",
+            "description": "Returns collection owner",
+            "entry-point": "0x4c102969",
+            "read-only": true
+        },
+        "transfer_ownership": {
+            "argument": "collections.transfer_ownership_arguments",
+            "return": "collections.empty_object",
+            "description": "Transfer ownership",
+            "entry-point": "0x394be702",
+            "read-only": false
+        },
+        "balance_of": {
+            "argument": "collections.balance_of_arguments",
+            "return": "collections.uint64_object",
+            "description": "Gets the balance of an owner",
+            "entry-point": "0x5c721497",
+            "read-only": true
+        },
+        "owner_of": {
+            "argument": "collections.owner_of_arguments",
+            "return": "collections.address_object",
+            "description": "Gets the owner of a token",
+            "entry-point": "0xed61c847",
+            "read-only": true
+        },
+        "get_bought_by": {
+            "argument": "collections.get_bought_by_arguments",
+            "return": "collections.address_object",
+            "description": "Gets the owner that bought the token token",
+            "entry-point": "0xacb2c22e",
+            "read-only": true
+        },
+        "bitkoin_value_of": {
+            "argument": "collections.bitkoin_value_of_arguments",
+            "return": "collections.uint64_object",
+            "description": "Gets the bitkoin value corresponding to a token",
+            "entry-point": "0x761dab45",
+            "read-only": true
+        },
+        "is_bought": {
+            "argument": "collections.is_bought_arguments",
+            "return": "collections.bool_object",
+            "description": "Checks if token has been bought",
+            "entry-point": "0x1dd1e23d",
+            "read-only": true
+        },
+        "is_claimed": {
+            "argument": "collections.is_claimed_arguments",
+            "return": "collections.bool_object",
+            "description": "Checks if token has been claimed",
+            "entry-point": "0xef2a227e",
+            "read-only": true
+        },
+        "mint": {
+            "argument": "collections.mint_arguments",
+            "return": "collections.empty_object",
+            "description": "Mints a new token",
+            "entry-point": "0xdc6f17bb",
+            "read-only": false
+        },
+        "burn": {
+            "argument": "collections.burn_arguments",
+            "return": "collections.empty_object",
+            "description": "Burns an existing token",
+            "entry-point": "0x859facc5",
+            "read-only": false
+        },
+        "transfer": {
+            "argument": "collections.transfer_arguments",
+            "return": "collections.empty_object",
+            "description": "Transfers a token",
+            "entry-point": "0x27f576ca",
+            "read-only": false
+        },
+        "claim_tokens": {
+            "argument": "collections.claim_tokens_arguments",
+            "return": "collections.empty_object",
+            "description": "mark token for which the tokens have been claimed",
+            "entry-point": "0x6458674c",
+            "read-only": false
+        },
+        "approve": {
+            "argument": "collections.approve_arguments",
+            "return": "collections.empty_object",
+            "description": "Approves an address to transfer a token",
+            "entry-point": "0x74e21680",
+            "read-only": false
+        },
+        "set_approval_for_all": {
+            "argument": "collections.set_approval_for_all_arguments",
+            "return": "collections.empty_object",
+            "description": "Approves or revokes an address to operate on all tokens owned by caller",
+            "entry-point": "0x20442216",
+            "read-only": false
+        }
+    },
+    "types": "Cv4WCiBhc3NlbWJseS9wcm90by9jb2xsZWN0aW9ucy5wcm90bxILY29sbGVjdGlvbnMaFGtvaW5vcy9vcHRpb25zLnByb3RvIg4KDGVtcHR5X29iamVjdCIlCg1zdHJpbmdfb2JqZWN0EhQKBXZhbHVlGAEgASgJUgV2YWx1ZSIpCg11aW50NjRfb2JqZWN0EhgKBXZhbHVlGAEgASgEQgIwAVIFdmFsdWUiIwoLYm9vbF9vYmplY3QSFAoFdmFsdWUYASABKAhSBXZhbHVlIiwKDmFkZHJlc3Nfb2JqZWN0EhoKBXZhbHVlGAEgASgMQgSAtRgGUgV2YWx1ZSKnAQoMdG9rZW5fb2JqZWN0EhoKBW93bmVyGAEgASgMQgSAtRgGUgVvd25lchInCg1iaXRrb2luX3ZhbHVlGAIgASgEQgIwAVIMYml0a29pblZhbHVlEhYKBmJvdWdodBgDIAEoCFIGYm91Z2h0EiAKCGJvdWdodEJ5GAQgASgMQgSAtRgGUghib3VnaHRCeRIYCgdjbGFpbWVkGAUgASgIUgdjbGFpbWVkIioKDmJhbGFuY2Vfb2JqZWN0EhgKBXZhbHVlGAEgASgEQgIwAVIFdmFsdWUiTAoOcm95YWx0eV9vYmplY3QSGgoGYW1vdW50GAEgASgEQgIwAVIGYW1vdW50Eh4KB2FkZHJlc3MYAiABKAxCBIC1GAZSB2FkZHJlc3MiZgoNY29uZmlnX29iamVjdBIaCgVvd25lchgBIAEoDEIEgLUYBlIFb3duZXISOQoJcm95YWx0aWVzGAIgAygLMhsuY29sbGVjdGlvbnMucm95YWx0eV9vYmplY3RSCXJveWFsdGllcyI3ChV0b2tlbl9hcHByb3ZhbF9vYmplY3QSHgoHYWRkcmVzcxgBIAEoDEIEgLUYBlIHYWRkcmVzcyI2ChhvcGVyYXRvcl9hcHByb3ZhbF9vYmplY3QSGgoIYXBwcm92ZWQYASABKAhSCGFwcHJvdmVkIhAKDm5hbWVfYXJndW1lbnRzIg8KDXVyaV9hcmd1bWVudHMiEgoQc3ltYm9sX2FyZ3VtZW50cyI5ChZnZXRfYXBwcm92ZWRfYXJndW1lbnRzEh8KCHRva2VuX2lkGAEgASgMQgSAtRgCUgd0b2tlbklkIl0KHWlzX2FwcHJvdmVkX2Zvcl9hbGxfYXJndW1lbnRzEhoKBW93bmVyGAEgASgMQgSAtRgGUgVvd25lchIgCghvcGVyYXRvchgCIAEoDEIEgLUYBlIIb3BlcmF0b3IiGAoWdG90YWxfc3VwcGx5X2FyZ3VtZW50cyIVChNyb3lhbHRpZXNfYXJndW1lbnRzIkUKEHJveWFsdGllc19yZXN1bHQSMQoFdmFsdWUYASADKAsyGy5jb2xsZWN0aW9ucy5yb3lhbHR5X29iamVjdFIFdmFsdWUiTAoXc2V0X3JveWFsdGllc19hcmd1bWVudHMSMQoFdmFsdWUYASADKAsyGy5jb2xsZWN0aW9ucy5yb3lhbHR5X29iamVjdFIFdmFsdWUiEQoPb3duZXJfYXJndW1lbnRzIjoKHHRyYW5zZmVyX293bmVyc2hpcF9hcmd1bWVudHMSGgoFb3duZXIYASABKAxCBIC1GAZSBW93bmVyIjIKFGJhbGFuY2Vfb2ZfYXJndW1lbnRzEhoKBW93bmVyGAEgASgMQgSAtRgGUgVvd25lciI1ChJvd25lcl9vZl9hcmd1bWVudHMSHwoIdG9rZW5faWQYASABKAxCBIC1GAJSB3Rva2VuSWQiOgoXZ2V0X2JvdWdodF9ieV9hcmd1bWVudHMSHwoIdG9rZW5faWQYASABKAxCBIC1GAJSB3Rva2VuSWQiPQoaYml0a29pbl92YWx1ZV9vZl9hcmd1bWVudHMSHwoIdG9rZW5faWQYASABKAxCBIC1GAJSB3Rva2VuSWQiNgoTaXNfYm91Z2h0X2FyZ3VtZW50cxIfCgh0b2tlbl9pZBgBIAEoDEIEgLUYAlIHdG9rZW5JZCI3ChRpc19jbGFpbWVkX2FyZ3VtZW50cxIfCgh0b2tlbl9pZBgBIAEoDEIEgLUYAlIHdG9rZW5JZCJdCg5taW50X2FyZ3VtZW50cxIUCgJ0bxgBIAEoDEIEgLUYBlICdG8SNQoVbnVtYmVyX3Rva2Vuc190b19taW50GAIgASgEQgIwAVISbnVtYmVyVG9rZW5zVG9NaW50IjEKDmJ1cm5fYXJndW1lbnRzEh8KCHRva2VuX2lkGAEgASgMQgSAtRgCUgd0b2tlbklkImUKEnRyYW5zZmVyX2FyZ3VtZW50cxIYCgRmcm9tGAEgASgMQgSAtRgGUgRmcm9tEhQKAnRvGAIgASgMQgSAtRgGUgJ0bxIfCgh0b2tlbl9pZBgDIAEoDEIEgLUYAlIHdG9rZW5JZCI5ChZjbGFpbV90b2tlbnNfYXJndW1lbnRzEh8KCHRva2VuX2lkGAEgASgMQgSAtRgCUgd0b2tlbklkInsKEWFwcHJvdmVfYXJndW1lbnRzEi8KEGFwcHJvdmVyX2FkZHJlc3MYASABKAxCBIC1GAZSD2FwcHJvdmVyQWRkcmVzcxIUCgJ0bxgCIAEoDEIEgLUYBlICdG8SHwoIdG9rZW5faWQYAyABKAxCBIC1GAJSB3Rva2VuSWQingEKHnNldF9hcHByb3ZhbF9mb3JfYWxsX2FyZ3VtZW50cxIvChBhcHByb3Zlcl9hZGRyZXNzGAEgASgMQgSAtRgGUg9hcHByb3ZlckFkZHJlc3MSLwoQb3BlcmF0b3JfYWRkcmVzcxgCIAEoDEIEgLUYBlIPb3BlcmF0b3JBZGRyZXNzEhoKCGFwcHJvdmVkGAMgASgIUghhcHByb3ZlZCJDCgptaW50X2V2ZW50EhQKAnRvGAEgASgMQgSAtRgGUgJ0bxIfCgh0b2tlbl9pZBgCIAEoDEIEgLUYAlIHdG9rZW5JZCI9Cgtvd25lcl9ldmVudBIYCgRmcm9tGAEgASgMQgSAtRgGUgRmcm9tEhQKAnRvGAIgASgMQgSAtRgGUgJ0byJECg9yb3lhbHRpZXNfZXZlbnQSMQoFdmFsdWUYASADKAsyGy5jb2xsZWN0aW9ucy5yb3lhbHR5X29iamVjdFIFdmFsdWUiXQoKYnVybl9ldmVudBIYCgRmcm9tGAEgASgMQgSAtRgGUgRmcm9tEhQKAnRvGAIgASgMQgSAtRgGUgJ0bxIfCgh0b2tlbl9pZBgDIAEoDEIEgLUYAlIHdG9rZW5JZCJhCg50cmFuc2Zlcl9ldmVudBIYCgRmcm9tGAEgASgMQgSAtRgGUgRmcm9tEhQKAnRvGAIgASgMQgSAtRgGUgJ0bxIfCgh0b2tlbl9pZBgDIAEoDEIEgLUYAlIHdG9rZW5JZCJICgtjbGFpbV9ldmVudBIYCgRmcm9tGAEgASgMQgSAtRgGUgRmcm9tEh8KCHRva2VuX2lkGAIgASgMQgSAtRgCUgd0b2tlbklkIpcBChdvcGVyYXRvcl9hcHByb3ZhbF9ldmVudBIvChBhcHByb3Zlcl9hZGRyZXNzGAEgASgMQgSAtRgGUg9hcHByb3ZlckFkZHJlc3MSLwoQb3BlcmF0b3JfYWRkcmVzcxgCIAEoDEIEgLUYBlIPb3BlcmF0b3JBZGRyZXNzEhoKCGFwcHJvdmVkGAMgASgIUghhcHByb3ZlZCJ+ChR0b2tlbl9hcHByb3ZhbF9ldmVudBIvChBhcHByb3Zlcl9hZGRyZXNzGAEgASgMQgSAtRgGUg9hcHByb3ZlckFkZHJlc3MSFAoCdG8YAiABKAxCBIC1GAZSAnRvEh8KCHRva2VuX2lkGAMgASgMQgSAtRgCUgd0b2tlbklkYgZwcm90bzM="
+}
