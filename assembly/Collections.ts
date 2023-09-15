@@ -222,7 +222,7 @@ export class Collections {
       newToken.owner = to;
       newToken.claimed = false;
       newToken.bought = false;
-      index < Constants.MAX_LARGE_BTK_SUPPLY ? newToken.bitkoin_value = Constants.LARGE_BTK_VALUE : newToken.bitkoin_value = Constants.STANDARD_BTK_VALUE; //TODO change the index value
+      index < (Constants.MAX_LARGE_BTK_SUPPLY+1) ? newToken.bitkoin_value = Constants.LARGE_BTK_VALUE : newToken.bitkoin_value = Constants.STANDARD_BTK_VALUE; //TODO change the index value
       this._state.saveToken(tokenId, newToken);
 
       // events
@@ -243,7 +243,7 @@ export class Collections {
     balance.value = SafeMath.add(balance.value, args.number_tokens_to_mint);
 
     // check limit address
-    System.require(balance.value < 201, "exceeds the limit of tokens per address");
+    System.require(balance.value < 221, "exceeds the limit of tokens per address");
 
     // increment supply
     supply.value = SafeMath.add(supply.value, args.number_tokens_to_mint);
